@@ -1,5 +1,6 @@
 import React from 'react';
 import { Accordion, List, WhiteSpace } from 'antd-mobile';
+import Header from '../Header/Header';
 
 export default class Sipirit extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export default class Sipirit extends React.Component {
             data: [
                 {
                     title: '喜欢吃的东西',
-                    list: ['青菜', '辣子鸡', '青椒茄子包'],
+                    list: ['青菜', '辣子鸡', '青椒茄子包', '鱼摆摆'],
                 },
                 {
                     title: '喜欢的书',
@@ -23,17 +24,18 @@ export default class Sipirit extends React.Component {
     render() {
         return (
             <div>
+                <Header title="走进你的灵魂" />
                 {
-                    this.state.data.map(item => {
+                    this.state.data.map((item, index) => {
                         return (
-                            <div>
+                            <div key={index}>
                                 <Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
                                     <Accordion.Panel header={item.title}>
                                         <List className="my-list">
                                             {
-                                                item.list.map(t => {
+                                                item.list.map((t,index) => {
                                                     return (
-                                                        <List.Item>{t}</List.Item>
+                                                        <List.Item key={index}>{t}</List.Item>
                                                     )
                                                 })
                                             }

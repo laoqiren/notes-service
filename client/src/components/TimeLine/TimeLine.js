@@ -1,8 +1,12 @@
 import React from 'react';
-import { List, WingBlank, Card, WhiteSpace } from 'antd-mobile';
+import CountUp from 'react-countup';
+import {Timeline, TimelineEvent} from 'react-event-timeline'
+import Header from '../Header/Header';
 
 import * as moment from 'moment';
 import './TimeLine.scss';
+
+const backColors = ['#FF5959', '#FF8260', '#49BEB7', '#A374D5', '#c40b13', '#bf81ff'];
 
 export default class TimeLine extends React.Component {
     constructor(props) {
@@ -45,41 +49,49 @@ export default class TimeLine extends React.Component {
             }
         })
     }
+    getColor() {
+        const randomIndex = Math.floor(Math.random() * backColors.length);
+        return backColors[randomIndex];
+    }
     render() {
         const duration = this.state.duration;
         return (
             <div className="timeline">
-                我们相爱了 {
-                    duration.years > 0 && <span><span className="duration-time">{duration.years}</span> 年</span>
-                } {
-                    duration.months > 0 && <span><span className="duration-time">{duration.months}</span> 月</span>
-                } {
-                    duration.days > 0 && <span><span className="duration-time">{duration.days}</span> 天</span>
-                }
-                <List renderHeader={() => '相遇->相识->相知->相爱->修炼在路上'}>
+                <Header title="时光穿梭机" />
+                <div className="count-up">
+                    我们相爱了 {
+                        duration.years > 0 && <span>
+                            <span className="duration-time"><CountUp end={duration.years} duration={2.75} /></span> 年 </span>
+                    } {
+                        duration.months > 0 && <span><span className="duration-time"><CountUp end={duration.months} duration={2.75} /></span> 月 </span>
+                    } {
+                        duration.days > 0 && <span><span className="duration-time"><CountUp end={duration.days} duration={2.75} /></span> 天 </span>
+                    }
+                </div>
+                <Timeline>
                     {
-                        this.state.list.map(moment => {
+                        this.state.list.length > 0 && this.state.list.map((moment, index) => {
+                            const randomColor = this.getColor();
                             return (
-                                <WingBlank>
-                                    <WhiteSpace size="lg" />
-                                    <Card>
-                                        <Card.Header
-                                            title={moment.title}
-                                            extra={moment.time}
-                                        >
-                                        </Card.Header>
-                                        <Card.Body>
-                                            {moment.content}
-                                        </Card.Body>
-                                        <Card.Footer>
-                                            {moment.addr}
-                                        </Card.Footer>
-                                    </Card>
-                                </WingBlank>
-                            );
+                                <TimelineEvent
+                                    key={index}
+                                    title={moment.title}
+                                    createdAt={`${moment.time} @${moment.addr}`}
+                                    icon={<span>L&W</span>}
+                                    iconColor={randomColor}
+                                    container="card"
+                                    style={{
+                                        borderRadius: 3,
+                                    }}
+                                    cardHeaderStyle={{backgroundColor: randomColor,color: 'white'}}
+                                    >
+                                    {moment.content}
+                                </TimelineEvent>
+                            )
                         })
                     }
-                </List>
+                </Timeline>
+                
             </div>
         )
     }

@@ -1,36 +1,19 @@
 import React from 'react';
-import { Tabs, WhiteSpace } from 'antd-mobile';
-import CategoryList from './sub/CategoryList';
-import configs from '../../config';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ListContainer from './ListContainer';
+import CategoryDetail from './sub/CategoryDetail';
 
-const lifeCategories = configs.lifeCategories;
 
 export default class Life extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tabs: lifeCategories.map(cate => ({
-                title: cate,
-            })),
-        }
-    }
     render() {
         return (
-            <div>
-                <Tabs tabs={this.state.tabs}
-                    initialPage={1}
-                    onChange={(tab, index) => { console.log('onChange', index, tab); }}
-                    onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
-                >
-                    {
-                        lifeCategories.map(category => {
-                            return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-                                <CategoryList category={category} />
-                            </div>
-                        })
-                    }
-                </Tabs>
-            </div>
+            <Router basename="/life">
+                <Switch>
+                    <Route path="/" exact component={ListContainer}></Route>
+                    <Route path="/detail" component={CategoryDetail}></Route>
+                    <Route component={ListContainer}></Route>
+                </Switch>
+            </Router>
         )
     }
 }

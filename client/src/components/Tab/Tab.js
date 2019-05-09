@@ -31,7 +31,7 @@ class Tab extends React.Component {
                             this.setState({
                                 selectedTab: 'timeLine',
                             });
-                            this.props.history.push('/timeLine')
+                            this.props.history.push('/timeLine');
                         }}
                         data-seed="logId"
                     >

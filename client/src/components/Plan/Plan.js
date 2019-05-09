@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../Header/Header';
 
 export default class Plan extends React.Component {
     constructor(props) {
@@ -9,7 +10,9 @@ export default class Plan extends React.Component {
     }
     render() {
         return (
-            <div>规划未来</div>
+            <div>
+                <Header title="未来，我一直在" />
+            </div>
         )
     }
 }
