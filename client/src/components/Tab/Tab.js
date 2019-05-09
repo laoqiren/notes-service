@@ -26,7 +26,6 @@ class Tab extends React.Component {
                         icon={{uri: require('../../icons/time.svg')}}
                         selectedIcon={{uri: require('../../icons/time_blue.svg')}}
                         selected={this.state.selectedTab === 'timeLine'}
-                        badge={1}
                         onPress={() => {
                             this.setState({
                                 selectedTab: 'timeLine',

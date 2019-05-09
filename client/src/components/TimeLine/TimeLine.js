@@ -31,6 +31,12 @@ export default class TimeLine extends React.Component {
                     addr: '重庆',
                     content: '感受你的温度'
                 },
+                {
+                    time: '2019-05-01',
+                    title: '我们第一次接吻',
+                    addr: '重庆',
+                    content: '吻上你的唇'
+                },
             ],
             duration: {
                 years: 0,

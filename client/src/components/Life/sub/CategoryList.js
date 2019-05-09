@@ -1,5 +1,7 @@
 import React from 'react';
-import { List } from 'antd-mobile';
+import { List, Result } from 'antd-mobile';
+
+import './CategoryList.scss';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -107,7 +109,10 @@ export default class CategoryList extends React.Component {
                     }
                     {
                         list.length === 0 && (
-                            <div>好懒哦，这里啥子都没得</div>
+                            <Result
+                                title="啥子都没得"
+                                message="好懒啊，小两口勤快点记录哦"
+                            />
                         )
                     }
                 </List>

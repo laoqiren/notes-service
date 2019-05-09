@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../../Header/Header';
 
+import './CategoryDetail.scss';
+
 export default class CategoryDetail extends React.Component {
     state = {
         category: '',
@@ -19,7 +21,10 @@ export default class CategoryDetail extends React.Component {
         return (
             <div>
                 <Header title={item.title} />
-                <div>
+                <div className="category-detail">
+                    <div className="content-header">
+                        {item.time} @ {item.addr}
+                    </div>
                     {item.content}
                 </div>
             </div>
