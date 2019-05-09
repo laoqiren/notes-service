@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Profile extends React.Component {
+export default class Plan extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,7 +9,7 @@ export default class Profile extends React.Component {
     }
     render() {
         return (
-            <div>这是一个测试路由组件</div>
+            <div>规划未来</div>
         )
     }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { List, WingBlank, Card, WhiteSpace } from 'antd-mobile';
 
 import * as moment from 'moment';
+import './TimeLine.scss';
 
 export default class TimeLine extends React.Component {
     constructor(props) {
@@ -45,31 +46,41 @@ export default class TimeLine extends React.Component {
         })
     }
     render() {
+        const duration = this.state.duration;
         return (
-            <List renderHeader={() => '相遇->相识->相知->相爱->修炼在路上'}>
-                {
-                    this.state.list.map(moment => {
-                        return (
-                            <WingBlank>
-                                <WhiteSpace size="lg" />
-                                <Card>
-                                    <Card.Header
-                                        title={moment.title}
-                                        extra={moment.time}
-                                    >
-                                    </Card.Header>
-                                    <Card.Body>
-                                        {moment.content}
-                                    </Card.Body>
-                                    <Card.Footer>
-                                        {moment.addr}
-                                    </Card.Footer>
-                                </Card>
-                            </WingBlank>
-                        );
-                    })
+            <div className="timeline">
+                我们相爱了 {
+                    duration.years > 0 && <span><span className="duration-time">{duration.years}</span> 年</span>
+                } {
+                    duration.months > 0 && <span><span className="duration-time">{duration.months}</span> 月</span>
+                } {
+                    duration.days > 0 && <span><span className="duration-time">{duration.days}</span> 天</span>
                 }
-            </List>
+                <List renderHeader={() => '相遇->相识->相知->相爱->修炼在路上'}>
+                    {
+                        this.state.list.map(moment => {
+                            return (
+                                <WingBlank>
+                                    <WhiteSpace size="lg" />
+                                    <Card>
+                                        <Card.Header
+                                            title={moment.title}
+                                            extra={moment.time}
+                                        >
+                                        </Card.Header>
+                                        <Card.Body>
+                                            {moment.content}
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            {moment.addr}
+                                        </Card.Footer>
+                                    </Card>
+                                </WingBlank>
+                            );
+                        })
+                    }
+                </List>
+            </div>
         )
     }
 }
