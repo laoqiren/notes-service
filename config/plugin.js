@@ -6,4 +6,8 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
+  mongo: {
+    enable: true,
+    package: 'egg-mongo-native',
+  },
 };

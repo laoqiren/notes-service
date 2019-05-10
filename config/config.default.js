@@ -24,6 +24,27 @@ module.exports = appInfo => {
     prefix: '/',
   };
 
+  config.mongo = {
+    client: {
+      host: '106.14.212.157',
+      port: '27017',
+      name: 'yes',
+      user: 'yes',
+      password: 'yes',
+    },
+  };
+
+  config.security = {
+    csrf: false,
+  };
+
+  config.session = {
+    key: 'love_notes',
+    maxAge: 48 * 3600 * 1000, // 2 天
+    httpOnly: true,
+    encrypt: true,
+  };
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
