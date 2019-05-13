@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, Result } from 'antd-mobile';
+import service from '../../../service/index';
 
 import './CategoryList.scss';
 
@@ -68,19 +69,25 @@ export default class CategoryList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            category: this.props.category,
             list: []
         }
     }
+    fetchArticleList(category) {
+        service.life.queryByCategory(category)
+            .then(list => {
+                this.setState({
+                    list,
+                });
+            });
+    }
     componentDidMount() {
-        this.setState({
-            list: mockData[this.props.category]
-        });
-        // 请求数据
+        this.fetchArticleList(this.props.category);
     }
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.category !== prevState.category) {
             return {
-                list: mockData[nextProps.category]
+                category: nextProps.category,
             }
         }
         return null;
@@ -94,13 +101,13 @@ export default class CategoryList extends React.Component {
             <div className="category-list">
                 <List>
                     {
-                        list && list.length > 0 && list.map(item => {
+                        list && list.length > 0 && list.map((item, index) => {
                             return (
                                 <Item
                                     arrow="horizontal"
                                     multipleLine
                                     onClick={() => this.showDetail(item)}
-                                    key={item.id}
+                                    key={index}
                                     >
                                     {item.title} <Brief>{item.time} @{item.addr} <br /> {item.content}</Brief>
                                 </Item>

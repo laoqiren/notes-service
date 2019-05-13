@@ -5,7 +5,6 @@ const Controller = require('egg').Controller;
 class TimeLineController extends Controller {
   async index() {
     const ctx = this.ctx;
-    // const user_id = ctx.user_id; // 来自cookie获取
     ctx.body = await ctx.service.timeLine.queryTimeLines();
   }
   async create() {

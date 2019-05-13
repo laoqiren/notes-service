@@ -10,4 +10,8 @@ module.exports = {
     enable: true,
     package: 'egg-mongo-native',
   },
+  cors: {
+    enable: true,
+    package: 'egg-cors',
+  },
 };

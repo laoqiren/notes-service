@@ -1,14 +1,18 @@
 import React from 'react';
 import CountUp from 'react-countup';
+import { withRouter } from 'react-router-dom';
 import {Timeline, TimelineEvent} from 'react-event-timeline'
 import Header from '../Header/Header';
+
+import LoverConsumer from '../LoverConsumer';
+import LoverContext from '../../loverContext';
 
 import * as moment from 'moment';
 import './TimeLine.scss';
 
 const backColors = ['#FF5959', '#FF8260', '#49BEB7', '#A374D5', '#c40b13', '#bf81ff'];
 
-export default class TimeLine extends React.Component {
+class TimeLine extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,6 +59,9 @@ export default class TimeLine extends React.Component {
             }
         })
     }
+    goToLoverCenter = () => {
+        this.props.history.push('/loverCenter');
+    }
     getColor() {
         const randomIndex = Math.floor(Math.random() * backColors.length);
         return backColors[randomIndex];
@@ -63,7 +70,9 @@ export default class TimeLine extends React.Component {
         const duration = this.state.duration;
         return (
             <div className="timeline">
-                <Header title="时光穿梭机" />
+                <Header title="时光穿梭机" rightContent={[
+                    <img onClick={this.goToLoverCenter} key="0" src={require('../../icons/user.svg')} alt="lover icon" width={20}/>
+                ]} />
                 <div className="count-up">
                     我们相爱了 {
                         duration.years > 0 && <span>
@@ -102,3 +111,5 @@ export default class TimeLine extends React.Component {
         )
     }
 }
+
+export default LoverConsumer(LoverContext)(withRouter(TimeLine));

@@ -15,4 +15,8 @@ module.exports = app => {
 
   // 时光穿梭机
   router.resources('timeLines', '/api/timeLine', authMiddleware, controller.timeLine);
+
+  // 生活点滴
+  router.get('life', '/api/life', controller.life.index);
+  router.post('life', '/api/life', controller.life.create);
 };

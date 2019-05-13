@@ -6,6 +6,8 @@
  * @param {Egg.EggAppInfo} appInfo app info
  */
 const path = require('path');
+const keys = require('./keys.config');
+
 module.exports = appInfo => {
   /**
    * built-in config
@@ -14,7 +16,7 @@ module.exports = appInfo => {
   const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1557304976418_4132';
+  config.keys = appInfo.name + keys.cookie_sign;
 
   // add your middleware config here
   config.middleware = [];
@@ -25,24 +27,25 @@ module.exports = appInfo => {
   };
 
   config.mongo = {
-    client: {
-      host: '106.14.212.157',
-      port: '27017',
-      name: 'yes',
-      user: 'yes',
-      password: 'yes',
-    },
-  };
-
-  config.security = {
-    csrf: false,
+    client: keys.mongo,
   };
 
   config.session = {
-    key: 'love_notes',
+    key: keys.sessionKey,
     maxAge: 48 * 3600 * 1000, // 2 天
     httpOnly: true,
     encrypt: true,
+  };
+
+  config.security = {
+    domainWhiteList: [ 'localhost:3000' ],
+    csrf: {
+      enable: false,
+    },
+  };
+
+  config.cors = {
+    credentials: true,
   };
 
   // add your user config here

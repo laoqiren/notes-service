@@ -5,6 +5,9 @@ import CategoryList from './sub/CategoryList';
 import Header from '../Header/Header';
 import configs from '../../config';
 
+import LoverConsumer from '../LoverConsumer';
+import LoverContext from '../../loverContext';
+
 const lifeCategories = configs.lifeCategories;
 
 class ListContainer extends React.Component {
@@ -25,14 +28,19 @@ class ListContainer extends React.Component {
             },
         });
     }
+    gotoAddArticle = () => {
+        this.props.history.push('/addArticle');
+    }
     render() {
+        const lover = this.props.context;
+        const headerRightContent = lover.hasLogin ? [
+            <img onClick={this.gotoAddArticle} key="0" src={require('../../icons/edit.svg')} alt="lover icon" width={20}/>
+        ] : [];
         return (
             <div>
-                <Header title="生活点滴" />
+                <Header title="生活点滴" rightContent={headerRightContent}/>
                 <Tabs tabs={this.state.tabs}
-                    initialPage={1}
-                    onChange={(tab, index) => { console.log('onChange', index, tab); }}
-                    onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+                    initialPage={0}
                 >
                     {
                         lifeCategories.map(category => {
@@ -53,4 +61,4 @@ class ListContainer extends React.Component {
     }
 }
 
-export default withRouter(ListContainer);
+export default LoverConsumer(LoverContext)(withRouter(ListContainer));
