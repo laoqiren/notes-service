@@ -2,4 +2,15 @@
     min-height: calc(100vh - 200px);
     background-color: white;
     opacity: 0.9;
+
+    .avator {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #eda1ab;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

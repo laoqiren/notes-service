@@ -24,7 +24,7 @@ export default class CategoryDetail extends React.Component {
                 <Header title={item.title} />
                 <div className="category-detail">
                     <div className="content-header">
-                        {moment(item.time).format('YYYY-MM-DD')} @ {item.addr}
+                        {moment(item.time).format('YYYY-MM-DD')} @ {item.addr} By: {item.creater}
                     </div>
                     {item.content}
                 </div>
