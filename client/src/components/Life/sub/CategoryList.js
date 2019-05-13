@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, Result } from 'antd-mobile';
+import * as moment from 'moment';
 import service from '../../../service/index';
 
 import './CategoryList.scss';
@@ -109,7 +110,7 @@ export default class CategoryList extends React.Component {
                                     onClick={() => this.showDetail(item)}
                                     key={index}
                                     >
-                                    {item.title} <Brief>{item.time} @{item.addr} <br /> {item.content}</Brief>
+                                    {item.title} <Brief>{ moment(item.time).format('YYYY-MM-DD') } @{item.addr} <br /> {item.content}</Brief>
                                 </Item>
                             );
                         })

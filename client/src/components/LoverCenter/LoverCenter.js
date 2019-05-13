@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, InputItem, Button } from 'antd-mobile';
+import { List, InputItem, Button, WhiteSpace, Toast } from 'antd-mobile';
 import Header from '../Header/Header';
 import LoverConsumer from '../LoverConsumer';
 import LoverContext from '../../loverContext';
@@ -12,7 +12,22 @@ class LoverCenter extends React.Component {
         lover_id: '',
         password: '',
     }
+    validateData = () => {
+        const { lover_id, password } = this.state;
+        if(!lover_id) {
+            Toast.info("登陆需要lover_id哟");
+            return false;
+        }
+        if(!password) {
+            Toast.info("没有密码就想登进去呀，傻不傻");
+            return false;
+        }
+        return true;
+    }
     handleLogin = () => {
+        if(!this.validateData()) {
+            return;
+        }
         service.lover.login(this.state)
             .then(json => {
                 if(json) {
@@ -20,6 +35,8 @@ class LoverCenter extends React.Component {
                         hasLogin: true,
                         loverInfo: json,
                     });
+                } else {
+                    Toast.info('哎呀，登陆失败啦，检查下账号密码再试试');
                 }
             });
     }
@@ -48,6 +65,7 @@ class LoverCenter extends React.Component {
                                     })}
                                 >password</InputItem>
                             </List>
+                            <WhiteSpace />
                             <Button type="primary" onClick={this.handleLogin}>登陆</Button>
                         </div>
                     )

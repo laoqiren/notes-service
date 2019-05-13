@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { List, InputItem, TextareaItem, Button, Picker, DatePicker, WhiteSpace  } from 'antd-mobile';
+import { List, InputItem, TextareaItem, Button, Picker, DatePicker, WhiteSpace, Toast  } from 'antd-mobile';
 import Header from '../../Header/Header';
 import configs from '../../../config';
 import service from '../../../service';
@@ -15,7 +15,35 @@ class AddArticle extends React.Component {
         content: '',
         category: '',
     }
+    validateData = () => {
+        const { title, time, addr, content, category } = this.state;
+        if(!title) {
+            Toast.info("别忘了输入标题哦");
+            return false;
+        }
+        if(!time) {
+            Toast.info("记录一下这件事的时间吧，亲爱的");
+            return false;
+        }
+        if(!addr) {
+            Toast.info("记录这件事的地点也很重要哟");
+            return false;
+        }
+        if(!content) {
+            Toast.info("又偷懒，内容都不写");
+            return false;
+        }
+        if(!category) {
+            Toast.info("要把它发表在哪个类目呀");
+            return false;
+        }
+        return true;
+    }
     handlePublish = () => {
+        if(!this.validateData()) {
+            return;
+        }
+        console.log("hhhh")
         const { title, time, addr, content, category } = this.state;
         service.life.addArticle({
             title,
@@ -27,6 +55,8 @@ class AddArticle extends React.Component {
         .then(result => {
             if(result) {
                 this.props.history.push('/');
+            } else {
+                Toast.info("哎呀，好像发表失败啦，重新试一下吧");
             }
         });
     }

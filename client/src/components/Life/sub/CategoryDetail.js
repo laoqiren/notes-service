@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../../Header/Header';
+import * as moment from 'moment';
 
 import './CategoryDetail.scss';
 
@@ -23,7 +24,7 @@ export default class CategoryDetail extends React.Component {
                 <Header title={item.title} />
                 <div className="category-detail">
                     <div className="content-header">
-                        {item.time} @ {item.addr}
+                        {moment(item.time).format('YYYY-MM-DD')} @ {item.addr}
                     </div>
                     {item.content}
                 </div>
