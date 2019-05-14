@@ -1,11 +1,41 @@
 .lover-center {
+    background-color: white;
+
     .lover-center-content {
-        margin-top: 55px;
+        min-height: calc(100vh - 90px);
+        margin-top: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .lover-info {
         margin: 20px 10px;
         background-color: white;
         padding: 20px;
         font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .avator {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #eda1ab;
+            font-size: 30px;
+            color: white;
+            margin: 0 auto;
+        }
+        .auth-info {
+            margin-top: 20px;
+            .info-label {
+                font-weight: bold;
+                margin-right: 5px;
+                color: #eda1ab;
+            }
+        }
     }
 }

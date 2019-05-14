@@ -74,8 +74,13 @@ class LoverCenter extends React.Component {
                     {
                         lover.hasLogin && (
                             <div className="lover-info">
-                                lover_name: {lover.loverInfo.lover_name} <br/>
-                                lover_id: {lover.loverInfo.lover_id}
+                                <div className="avator">
+                                    { lover.loverInfo.lover_id.slice(0, 1).toUpperCase() }
+                                </div>
+                                <div className="auth-info">
+                                    <span className="info-label">你是TA的: </span>{lover.loverInfo.lover_name} <br/>
+                                    <span className="info-label">你的标志: </span>{lover.loverInfo.lover_id}
+                                </div>
                             </div>
                         )
                     }
