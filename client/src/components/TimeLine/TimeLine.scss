@@ -1,15 +1,18 @@
 .timeline {
-    .count-up {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 180px;
-        font-size: 22px;
-        width: 100%;
-        color: white;
-    }
-    .duration-time {
-        color: red;
-        font-weight: bold;
+    .timeline-content {
+        margin-top: 50px;
+        .count-up {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 180px;
+            font-size: 22px;
+            width: 100%;
+            color: white;
+        }
+        .duration-time {
+            color: red;
+            font-weight: bold;
+        }
     }
 }

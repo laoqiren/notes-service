@@ -14,7 +14,8 @@ module.exports = app => {
   router.get('loverInfo', '/api/queryLoverInfo', controller.login.queryLoverInfo); // 根据cookie获取身份信息
 
   // 时光穿梭机
-  router.resources('timeLines', '/api/timeLine', authMiddleware, controller.timeLine);
+  router.get('timeLines', '/api/timeLine', controller.timeLine.index);
+  router.post('timeLines', '/api/timeLine', authMiddleware, controller.timeLine.create);
 
   // 生活点滴
   router.get('life', '/api/life', controller.life.index);

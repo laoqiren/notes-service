@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import CategoryList from './sub/CategoryList';
 import Header from '../Header/Header';
 import configs from '../../config';
+import './ListContainer.scss';
 
 import LoverConsumer from '../LoverConsumer';
 import LoverContext from '../../loverContext';
@@ -37,25 +38,27 @@ class ListContainer extends React.Component {
             <img onClick={this.gotoAddArticle} key="0" src={require('../../icons/edit.svg')} alt="lover icon" width={20}/>
         ] : [];
         return (
-            <div>
+            <div className="category-list-container">
                 <Header title="生活点滴" rightContent={headerRightContent}/>
-                <Tabs tabs={this.state.tabs}
-                    initialPage={0}
-                >
-                    {
-                        lifeCategories.map(category => {
-                            return (
-                                <div
-                                    style={{minHeight: 'calc(100vh - 200px)'}} 
-                                    key={category.value}>
-                                    <CategoryList
-                                        category={category.value}
-                                        handleShowDetail={(category, item) => this.handleShowDetail(category, item)}
-                                    />
-                                </div>)
-                        })
-                    }
-                </Tabs>
+                <div className="category-tabs">
+                    <Tabs tabs={this.state.tabs}
+                        initialPage={0}
+                    >
+                        {
+                            lifeCategories.map(category => {
+                                return (
+                                    <div
+                                        style={{minHeight: 'calc(100vh - 200px)'}} 
+                                        key={category.value}>
+                                        <CategoryList
+                                            category={category.value}
+                                            handleShowDetail={(category, item) => this.handleShowDetail(category, item)}
+                                        />
+                                    </div>)
+                            })
+                        }
+                    </Tabs>
+                </div>
             </div>
         )
     }

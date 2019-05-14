@@ -10,11 +10,15 @@ class TimeLineService extends Service {
   }
   async createTimeLine(newTimeLine, lover_id) {
     const ctx = this.ctx;
-    await ctx.app.mongo.insertOne('timeLine', {
-      doc: Object.assign({}, newTimeLine, {
-        creater: lover_id,
-      }),
-    });
+    try {
+      await ctx.app.mongo.insertOne('timeLine', {
+        doc: Object.assign({}, newTimeLine, {
+          creater: lover_id,
+        }),
+      });
+    } catch (err) {
+      return null;
+    }
     return newTimeLine;
   }
 }

@@ -13,8 +13,13 @@ class TimeLineController extends Controller {
     const newTimeLine = ctx.request.body;
 
     const timeLine = await ctx.service.timeLine.createTimeLine(newTimeLine, lover_id);
-    ctx.status = 201;
-    ctx.body = timeLine;
+    if (timeLine) {
+      ctx.status = 201;
+      ctx.body = timeLine;
+    } else {
+      ctx.status = 500;
+      ctx.body = {};
+    }
   }
 }
 

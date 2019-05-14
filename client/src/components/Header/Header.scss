@@ -1,10 +1,6 @@
-.header {
+.nav-header {
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 18px;
-    background-color: #408CE2;
+    z-index: 100;
 }

@@ -12,7 +12,7 @@ import './TimeLine.scss';
 
 const backColors = ['#FF5959', '#FF8260', '#49BEB7', '#A374D5', '#c40b13', '#bf81ff'];
 
-class TimeLine extends React.Component {
+class TimeLineComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -73,43 +73,44 @@ class TimeLine extends React.Component {
                 <Header title="时光穿梭机" rightContent={[
                     <img onClick={this.goToLoverCenter} key="0" src={require('../../icons/user.svg')} alt="lover icon" width={20}/>
                 ]} />
-                <div className="count-up">
-                    我们相爱了 {
-                        duration.years > 0 && <span>
-                            <span className="duration-time"><CountUp end={duration.years} duration={2.75} /></span> 年 </span>
-                    } {
-                        duration.months > 0 && <span><span className="duration-time"><CountUp end={duration.months} duration={2.75} /></span> 月 </span>
-                    } {
-                        duration.days > 0 && <span><span className="duration-time"><CountUp end={duration.days} duration={2.75} /></span> 天 </span>
-                    }
+                <div className="timeline-content">
+                    <div className="count-up">
+                        我们相爱了 {
+                            duration.years > 0 && <span>
+                                <span className="duration-time"><CountUp end={duration.years} duration={2.75} /></span> 年 </span>
+                        } {
+                            duration.months > 0 && <span><span className="duration-time"><CountUp end={duration.months} duration={2.75} /></span> 月 </span>
+                        } {
+                            duration.days > 0 && <span><span className="duration-time"><CountUp end={duration.days} duration={2.75} /></span> 天 </span>
+                        }
+                    </div>
+                    <Timeline>
+                        {
+                            this.state.list.length > 0 && this.state.list.map((moment, index) => {
+                                const randomColor = this.getColor();
+                                return (
+                                    <TimelineEvent
+                                        key={index}
+                                        title={moment.title}
+                                        createdAt={`${moment.time} @${moment.addr}`}
+                                        icon={<span>L&W</span>}
+                                        iconColor={randomColor}
+                                        container="card"
+                                        style={{
+                                            borderRadius: 3,
+                                        }}
+                                        cardHeaderStyle={{backgroundColor: randomColor,color: 'white'}}
+                                        >
+                                        {moment.content}
+                                    </TimelineEvent>
+                                )
+                            })
+                        }
+                    </Timeline>
                 </div>
-                <Timeline>
-                    {
-                        this.state.list.length > 0 && this.state.list.map((moment, index) => {
-                            const randomColor = this.getColor();
-                            return (
-                                <TimelineEvent
-                                    key={index}
-                                    title={moment.title}
-                                    createdAt={`${moment.time} @${moment.addr}`}
-                                    icon={<span>L&W</span>}
-                                    iconColor={randomColor}
-                                    container="card"
-                                    style={{
-                                        borderRadius: 3,
-                                    }}
-                                    cardHeaderStyle={{backgroundColor: randomColor,color: 'white'}}
-                                    >
-                                    {moment.content}
-                                </TimelineEvent>
-                            )
-                        })
-                    }
-                </Timeline>
-                
             </div>
         )
     }
 }
 
-export default LoverConsumer(LoverContext)(withRouter(TimeLine));
+export default LoverConsumer(LoverContext)(withRouter(TimeLineComponent));

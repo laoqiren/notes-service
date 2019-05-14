@@ -45,40 +45,41 @@ class LoverCenter extends React.Component {
         return (
             <div className="lover-center">
                 <Header title="Lover" />
-                {
-                    !lover.hasLogin && (
-                        <div>
-                            <List renderHeader={() => ''}>
-                                <InputItem
-                                    type="text"
-                                    placeholder="输入lover id"
-                                    clear={true}
-                                    onChange={val => this.setState({
-                                        lover_id: val,
-                                    })}
-                                >lover id</InputItem>
-                                <InputItem
-                                    type="password"
-                                    placeholder="****"
-                                    onChange={val => this.setState({
-                                        password: val,
-                                    })}
-                                >password</InputItem>
-                            </List>
-                            <WhiteSpace />
-                            <Button type="primary" onClick={this.handleLogin}>登陆</Button>
-                        </div>
-                    )
-                }
-                {
-                    lover.hasLogin && (
-                        <div className="lover-info">
-                            lover_name: {lover.loverInfo.lover_name} <br/>
-                            lover_id: {lover.loverInfo.lover_id}
-                        </div>
-                    )
-                }
-                
+                <div className="lover-center-content">
+                    {
+                        !lover.hasLogin && (
+                            <div>
+                                <List renderHeader={() => ''}>
+                                    <InputItem
+                                        type="text"
+                                        placeholder="输入lover id"
+                                        clear={true}
+                                        onChange={val => this.setState({
+                                            lover_id: val,
+                                        })}
+                                    >lover id</InputItem>
+                                    <InputItem
+                                        type="password"
+                                        placeholder="****"
+                                        onChange={val => this.setState({
+                                            password: val,
+                                        })}
+                                    >password</InputItem>
+                                </List>
+                                <WhiteSpace />
+                                <Button type="primary" onClick={this.handleLogin}>登陆</Button>
+                            </div>
+                        )
+                    }
+                    {
+                        lover.hasLogin && (
+                            <div className="lover-info">
+                                lover_name: {lover.loverInfo.lover_name} <br/>
+                                lover_id: {lover.loverInfo.lover_id}
+                            </div>
+                        )
+                    }
+                </div>
             </div>
         )
     }

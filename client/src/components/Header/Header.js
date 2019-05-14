@@ -11,11 +11,12 @@ class Header extends React.Component {
         const title = this.props.title;
         return (
             <NavBar
-            mode="dark"
-            icon={<Icon type="left" />}
-            onLeftClick={() => this.handleBack()}
-            rightContent={this.props.rightContent || []}
-            >{title}</NavBar>
+                mode="dark"
+                className="nav-header"
+                icon={<Icon type="left" />}
+                onLeftClick={() => this.handleBack()}
+                rightContent={this.props.rightContent || []}
+                >{title}</NavBar>
         )
     }
 }
