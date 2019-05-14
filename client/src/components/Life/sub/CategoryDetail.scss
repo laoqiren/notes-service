@@ -7,13 +7,16 @@
     background-color: white;
     opacity: 0.9;
 
-    .content-header {
-        margin-bottom: 10px;
+    .detail-header {
         color: gray;
         font-size: 14px;
     }
 
-    .centent-operation {
-        margin-bottom: 20px;
+    .detail-operation {
+        margin-top: 10px;
+    }
+
+    .detail-content {
+        margin-top: 20px;
     }
 }

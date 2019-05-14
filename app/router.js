@@ -19,5 +19,6 @@ module.exports = app => {
   // 生活点滴
   router.get('life', '/api/life', controller.life.index);
   router.post('life', '/api/life', authMiddleware, controller.life.create);
-  router.post('life', '/api/deleteLifeArticle', controller.life.delete);
+  router.post('life', '/api/updateArticle', authMiddleware, controller.life.update);
+  router.post('life', '/api/deleteLifeArticle', authMiddleware, controller.life.delete);
 };

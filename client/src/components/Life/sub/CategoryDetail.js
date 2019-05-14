@@ -4,6 +4,8 @@ import { Modal, Toast } from 'antd-mobile';
 import Header from '../../Header/Header';
 import * as moment from 'moment';
 import service from '../../../service/index';
+import LoverConsumer from '../../LoverConsumer';
+import LoverContext from '../../../loverContext';
 
 import './CategoryDetail.scss';
 
@@ -19,6 +21,14 @@ class CategoryDetail extends React.Component {
         this.setState({
             category: status.category,
             item: status.item,
+        });
+    }
+    goToUpdate = () => {
+        this.props.history.push({
+            pathname: '/updateArticle',
+            state: {
+                item: this.state.item,
+            },
         });
     }
     handleDelete = () => {
@@ -40,22 +50,25 @@ class CategoryDetail extends React.Component {
               { text: '残忍删除', onPress: this.handleDelete },
             ]);
         };
+        const lover = this.props.context;
         return (
             <div>
                 <Header title={item.title} />
                 <div className="category-detail">
-                    <div className="content-header">
+                    <div className="detail-header">
                         {moment(item.time).format('YYYY-MM-DD')} @ {item.addr} By: {item.creater}
                     </div>
-                    <div className="centent-operation">
-                        <img src={require('../../../icons/edit_blue.svg')} alt="edit" style={{ width: '22px', marginRight: '15px' }} />
+                    {
+                        lover.hasLogin && (<div className="detail-operation">
+                        <img src={require('../../../icons/edit_blue.svg')} onClick={this.goToUpdate} alt="edit" style={{ width: '22px', marginRight: '15px' }} />
                         <img src={require('../../../icons/delete.svg')} onClick={showDeleteAlert} alt="delete" style={{ width: '20px', marginRight: '15px' }} />
-                    </div>
-                    {item.content}
+                    </div>)
+                    }
+                    <div className="detail-content">{item.content}</div>
                 </div>
             </div>
         )
     }
 }
 
-export default withRouter(CategoryDetail);
+export default LoverConsumer(LoverContext)(withRouter(CategoryDetail));

@@ -12,6 +12,9 @@ export default {
     addArticle(article) {
         return api.postJSON('/api/life', article);
     },
+    updateArticle(data) {
+        return api.postJSON('/api/updateArticle', data);
+    },
     deleteArticle(_id) {
         return api.postJSON('/api/deleteLifeArticle', {
             _id,

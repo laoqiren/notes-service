@@ -26,6 +26,23 @@ class LifeService extends Service {
     }
     return newArticle;
   }
+  async updateArticle(_id, data) {
+    const ctx = this.ctx;
+    let result;
+    try {
+      result = await ctx.app.mongo.findOneAndUpdate('life', {
+        filter: {
+          _id: mongodb.ObjectID(_id),
+        },
+        update: {
+          $set: data,
+        },
+      });
+    } catch (err) {
+      return null;
+    }
+    return result;
+  }
   async deleteArticle(_id) {
     const ctx = this.ctx;
     let result;

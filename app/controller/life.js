@@ -23,6 +23,20 @@ class LifeController extends Controller {
       ctx.body = {};
     }
   }
+  async update() {
+    const ctx = this.ctx;
+    const { _id, article } = ctx.request.body;
+
+    const updatedArticle = await ctx.service.life.updateArticle(_id, article);
+
+    if (updatedArticle) {
+      ctx.status = 200;
+      ctx.body = updatedArticle;
+    } else {
+      ctx.status = 500;
+      ctx.body = {};
+    }
+  }
   async delete() {
     const ctx = this.ctx;
     const _id = ctx.request.body._id;
