@@ -15,6 +15,10 @@ export default {
         {
             title: '冒险',
             value: 'adventure'
+        },
+        {
+            title: '碎碎念',
+            value: 'thought'
         }
     ]
 }

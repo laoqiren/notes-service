@@ -14,8 +14,28 @@ class LifeController extends Controller {
     const newArticle = ctx.request.body;
 
     const article = await ctx.service.life.createArticle(newArticle, lover_id);
-    ctx.status = 201;
-    ctx.body = article;
+
+    if (article) {
+      ctx.status = 201;
+      ctx.body = article;
+    } else {
+      ctx.status = 500;
+      ctx.body = {};
+    }
+  }
+  async delete() {
+    const ctx = this.ctx;
+    const _id = ctx.request.body._id;
+
+    const deletedArticle = await ctx.service.life.deleteArticle(_id);
+
+    if (deletedArticle) {
+      ctx.status = 200;
+      ctx.body = deletedArticle;
+    } else {
+      ctx.status = 500;
+      ctx.body = {};
+    }
   }
 }
 
